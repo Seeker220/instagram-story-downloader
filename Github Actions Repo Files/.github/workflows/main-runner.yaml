@@ -1,0 +1,27 @@
+name: Main Runner
+
+on:
+  schedule:
+    - cron: "0 12 * * *"  # This will be updated dynamically
+  workflow_dispatch:
+
+jobs:
+  run-task:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Log in to GitHub Container Registry
+        run: echo "${{ secrets.GH_CLASSIC_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+      - name: Pull Docker Image
+        run: docker pull ghcr.io/replace/with/your/image/url:latest
+
+      - name: Run Docker Container
+        run: docker run --rm ghcr.io/replace/with/your/image/url:latest
+
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Disable Itself After Running
+        run: gh workflow disable main-runner.yaml
+        env:
+          GH_TOKEN: ${{ secrets.GH_CLASSIC_TOKEN }}

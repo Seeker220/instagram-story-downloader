@@ -1,0 +1,53 @@
+name: Trigger Creator
+
+on:
+  workflow_dispatch:  # Allows manual triggering
+  schedule:
+    - cron: "0 */12 * * *"  # Runs every 12 hours
+
+jobs:
+  update-cron:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GH_CLASSIC_TOKEN }}
+
+      - name: Enable Main Workflow
+        run: gh workflow enable main-runner.yaml
+        env:
+          GH_TOKEN: ${{ secrets.GH_CLASSIC_TOKEN }}
+
+      - name: Generate Next Execution Time
+        id: random-cron
+        run: |
+          # Generate a random offset between -3 to +3 hours
+          RANDOM_OFFSET=$((RANDOM % 7 - 3))  # Random integer from -3 to +3
+          
+          # Calculate new UTC hour (Current time + 12 + Random Offset)
+          NEW_HOUR=$(date -u -d "+$((12 + RANDOM_OFFSET)) hours" +"%H")
+          NEW_MINUTE=$(date -u +"%M")
+
+          # Create new cron expression (Runs at the calculated hour)
+          NEW_CRON="$NEW_MINUTE $NEW_HOUR * * *"
+          echo "NEW_CRON=$NEW_CRON" >> $GITHUB_ENV
+
+          # Calculate and display next execution time in UTC
+          NEXT_EXECUTION=$(date -u -d "+$((12 + RANDOM_OFFSET)) hours" +"%Y-%m-%d %H:%M:%S UTC")
+          echo "Next execution time: $NEXT_EXECUTION"
+
+      - name: Update `main-runner.yaml` with New Cron
+        run: |
+          # Replace the old cron with the new one in main-runner.yaml
+          sed -i "s/^    - cron: \".*\"/    - cron: \"${NEW_CRON}\"/" .github/workflows/main-runner.yaml
+
+      - name: Commit and Push Changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "actions@github.com"
+          git add .github/workflows/main-runner.yaml
+          git commit -m "Update main-runner cron to: ${NEW_CRON}"
+          git push origin main
+        env:
+          GH_CLASSIC_TOKEN: ${{ secrets.GH_CLASSIC_TOKEN }}

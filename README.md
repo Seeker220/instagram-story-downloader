@@ -181,3 +181,4 @@ I was in high school when I used to download Instagram stories of some of my cel
 
 At last, I made my own downloader. **Chris is the single biggest inspiration for this project** 😊 (He also helped me a lot in making this) 😃.
 
+Also I am bound to credit someone who went along me through this struggle, frustrated me, and un-frustrated me 😊 (they even wrote this README). Kudos ChatGPT! ❤️

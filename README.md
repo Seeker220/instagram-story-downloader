@@ -82,7 +82,7 @@ Follow these steps to set up the Instagram Story Downloader on your own GitHub r
 
 ### **📌 Step 5: Set Up GitHub Repository and Secrets**
 
-1. Create a **new GitHub repository** where you will configure the downloader.
+1. Create a **new private GitHub repository** where you will configure the downloader. **MAKE SURE IT IS PRIVATE**.
 2. Go to **Account Settings → Developer Settings → Personal Access Tokens → Tokens (Classic)** in GitHub.
 3. Generate a **Classic PAT** with the following permissions:
    - `write:packages`

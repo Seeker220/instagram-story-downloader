@@ -30,10 +30,40 @@ Follow these steps to set up the Instagram Story Downloader on your own GitHub r
 
 ---
 
-### **📂 Step 1: Download and Extract Repository**
+### **📂 Step 1: Download the Repository**  
 
-1. Download this repository as a **ZIP file**.
-2. Extract the ZIP file to a folder on your computer. Let's call this folder **`repo-folder`**.
+#### **Option 1: Clone Using Git (Recommended)**  
+This keeps files updated easily.  
+
+1. Open a terminal (**Command Prompt, PowerShell, Terminal, or Bash**).
+2. Run the following commands:  
+   ```sh
+   git clone https://github.com/Seeker220/instagram-story-downloader.git
+   cd instagram-story-downloader
+   ```
+3. Open the folder in **File Explorer**:  
+   - **Windows:**  
+     ```sh
+     explorer .
+     ```
+   - **macOS:**  
+     ```sh
+     open .
+     ```
+   - **Linux (Ubuntu, GNOME-based):**  
+     ```sh
+     nautilus . &
+     ```
+     *(Use `xdg-open .` if you're on a different file manager.)*
+
+---
+
+#### **Option 2: Download as ZIP (For Non-Git Users)**  
+1. Click **"Code"** (🔽) on the GitHub repo page and select **"Download ZIP"**.  
+2. Extract the ZIP file to a folder on your computer.  
+3. Open the folder and proceed with setup.  
+
+
 
 ---
 

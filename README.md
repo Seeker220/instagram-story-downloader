@@ -56,7 +56,6 @@ This keeps files updated easily.
      ```
      *(Use `xdg-open .` if you're on a different file manager.)*
 
----
 
 #### **Option 2: Download as ZIP (For Non-Git Users)**  
 1. Click **"Code"** (🔽) on the GitHub repo page and select **"Download ZIP"**.  

@@ -134,31 +134,35 @@ This keeps files updated easily.
 
 ---
 
-### **🐳 Step 6: Install Docker and Build Image**
+### **🐫 Step 6: Install Docker and Build Image**  
 
-#### **Windows & macOS:**
+#### **Windows & macOS:**  
+- Install **Docker Desktop** and open its CLI.  
 
-- Install **Docker Desktop** and open its CLI.
+#### **Linux:**  
+- Install **Docker CLI** using the appropriate package manager.  
 
-#### **Linux:**
+#### **Build the Docker Image:**  
 
-- Install **Docker CLI** using the appropriate package manager.
-
-#### **Build the Docker Image:**
-
-1. Open a terminal or command prompt.
-2. Navigate to the Docker Files directory:
+1. Open a terminal or command prompt.  
+2. Navigate to the Docker Files directory:  
    ```sh
    cd "repo-folder/Docker Files"
-   ```
-3. Build the Docker image:
+   ```  
+3. Build the Docker image:  
    ```sh
    docker build -t instagram-story-downloader .
-   ```
-4. **Test the container locally**:
+   ```  
+4. Run the following command sequentially in the terminal (replacing placeholders with your actual credentials):  
    ```sh
-   docker run --rm instagram-story-downloader
+   docker run --rm \
+     -e INSTA_USERNAME="your_username" \
+     -e INSTA_PASSWORD="your_password" \
+     -e USER_EMAIL="your_email@example.com" \
+     instagram-story-downloader
    ```
+
+
 
 ---
 

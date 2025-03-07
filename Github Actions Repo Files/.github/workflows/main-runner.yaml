@@ -16,7 +16,12 @@ jobs:
         run: docker pull ghcr.io/replace/with/your/image/url:latest
 
       - name: Run Docker Container
-        run: docker run --rm ghcr.io/replace/with/your/image/url:latest
+        run: |
+          docker run --rm \
+            -e INSTA_USERNAME=${{ secrets.INSTA_USERNAME }} \
+            -e INSTA_PASSWORD=${{ secrets.INSTA_PASSWORD }} \
+            -e USER_EMAIL=${{ secrets.USER_EMAIL }} \
+            ghcr.io/replace/with/your/image/url:latest
 
       - name: Checkout Repository
         uses: actions/checkout@v4

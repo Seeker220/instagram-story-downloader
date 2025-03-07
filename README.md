@@ -96,34 +96,40 @@ This keeps files updated easily.
 
 ---
 
-### **🔑 Step 4: Enter Instagram Credentials**
+### **🔑 Step 4: Generate a New Classic Token**  
 
-1. Open the file `repo-folder/Docker Files/main.py`.
-2. Edit the following lines with your **Instagram credentials** (Lines 20, 21, and 22):
-   ```python
-   insta_username = "username" # Replace with your username
-   insta_password = "password" # Replace with your password
-   user_email = "mail@email.com" # Replace with your email
-   ```
-3. **Save the file** after editing.
+1. Go to **GitHub → Account Settings → Developer Settings → Personal Access Tokens → Tokens (Classic)**.  
+2. Click **"Generate new token (classic)"**.  
+3. Select the following permissions:  
+   - `write:packages`  
+   - `read:packages`  
+   - `repo`  
+   - `workflow`  
+4. Click **Generate token** and copy the token immediately. You won’t be able to see it again.  
 
 ---
 
 ### **📌 Step 5: Set Up GitHub Repository and Secrets**
 
 1. Create a **new private GitHub repository** where you will configure the downloader. **MAKE SURE IT IS PRIVATE**.
-2. Go to **Account Settings → Developer Settings → Personal Access Tokens → Tokens (Classic)** in GitHub.
-3. Generate a **Classic PAT** with the following permissions:
-   - `write:packages`
-   - `read:packages`
-   - `repo`
-   - `workflow`
-4. Go to **Repository Settings → Secrets and variables → Actions**.
-5. Click **New repository secret**.
-6. Name it **`GH_CLASSIC_TOKEN`**.
-7. Paste the **Classic PAT** as the value.
-8. **Ensure that GitHub Actions workflows have the required permissions**:
-   - Go to **Repository Settings → Actions → General**.
+2. Go to your **GitHub repository → Settings → Secrets and variables → Actions**.  
+3. Click **"New repository secret"**.  
+4. Add the following secrets one by one:  
+
+   - **Name:** `GH_CLASSIC_TOKEN`  
+     - **Value:** *(Paste the Classic PAT you copied in Step 4)*  
+
+   - **Name:** `INSTA_USERNAME`  
+     - **Value:** *(Your Instagram username)*  
+
+   - **Name:** `INSTA_PASSWORD`  
+     - **Value:** *(Your Instagram password)*  
+
+   - **Name:** `USER_EMAIL`  
+     - **Value:** *(Your email to receive logs)*  
+
+5. **Ensure that GitHub Actions workflows have the required permissions**:  
+   - Go to **Repository Settings → Actions → General**.  
    - Under **Workflow permissions**, select **Read and write permissions**.
 
 ---

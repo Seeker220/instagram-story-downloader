@@ -17,13 +17,14 @@ subfile = os.path.join(os.getcwd(), "subscriptions.txt")
 user_dir = os.path.join(os.getcwd(), "playwright_data")
 logfile = os.path.join(os.getcwd(), "logs.txt")
 templogfile = os.path.join(os.getcwd(), "templogs.txt")
-insta_username = "username" #Replace with your username
-insta_password = "password" #Replace with your password
-user_email = "mail@email.com" #Replace with your email
 story_folder = os.path.join(os.getcwd(), "Stories")
 config_file = os.path.join(os.getcwd(), "rclone.conf")
 user_data_list = []
 cwd = os.getcwd()
+# Environment Variables
+insta_username = os.getenv("INSTA_USERNAME", "")
+insta_password = os.getenv("INSTA_PASSWORD", "")
+user_email = os.getenv("USER_EMAIL", "")
 async def main_runner():
     reset_folder(story_folder)
     open(templogfile, 'w').close()

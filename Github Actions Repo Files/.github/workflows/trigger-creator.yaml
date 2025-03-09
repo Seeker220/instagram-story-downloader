@@ -22,19 +22,21 @@ jobs:
       - name: Generate Next Execution Time
         id: random-cron
         run: |
-          # Generate a random offset between 0 to +6 hours
-          RANDOM_OFFSET=$((RANDOM % 7))  # Random integer from 0 to +6
-          
-          # Calculate new UTC hour (Current time + Random Offset)
-          NEW_HOUR=$(date -u -d "+$((RANDOM_OFFSET)) hours" +"%H")
-          NEW_MINUTE=$(date -u +"%M")
+          # Generate a random offset between +6 to +12 hours
+          RANDOM_OFFSET=$((RANDOM % 7 + 6))  # Random integer from 6 to 12
 
-          # Create new cron expression (Runs at the calculated hour)
+          # Generate a random minute (0-59)
+          NEW_MINUTE=$((RANDOM % 60))
+
+          # Calculate new UTC hour (Current time + Random Offset)
+          NEW_HOUR=$(date -u -d "+${RANDOM_OFFSET} hours" +"%H")
+
+          # Create new cron expression (Runs at the calculated hour & minute)
           NEW_CRON="$NEW_MINUTE $NEW_HOUR * * *"
           echo "NEW_CRON=$NEW_CRON" >> $GITHUB_ENV
 
           # Calculate and display next execution time in UTC
-          NEXT_EXECUTION=$(date -u -d "+$((RANDOM_OFFSET)) hours" +"%Y-%m-%d %H:%M:%S UTC")
+          NEXT_EXECUTION=$(date -u -d "+${RANDOM_OFFSET} hours" +"%Y-%m-%d %H:%M:%S UTC")
           echo "Next execution time: $NEXT_EXECUTION"
 
       - name: Update `main-runner.yaml` with New Cron

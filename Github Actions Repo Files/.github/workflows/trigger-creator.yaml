@@ -36,7 +36,7 @@ jobs:
           echo "NEW_CRON=$NEW_CRON" >> $GITHUB_ENV
 
           # Calculate and display next execution time in UTC
-          NEXT_EXECUTION=$(date -u -d "+${RANDOM_OFFSET} hours" +"%Y-%m-%d %H:%M:%S UTC")
+          NEXT_EXECUTION=$(date -u -d "+${RANDOM_OFFSET} hours" +"%Y-%m-%d %H:${NEW_MINUTE}:00 UTC")
           echo "Next execution time: $NEXT_EXECUTION"
 
       - name: Update `main-runner.yaml` with New Cron

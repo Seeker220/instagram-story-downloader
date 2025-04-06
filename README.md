@@ -153,7 +153,7 @@ This keeps files updated easily.
    ```sh
    docker build -t instagram-story-downloader .
    ```  
-4. Run the following command sequentially in the terminal (replacing placeholders with your actual credentials):  
+4. Run the following command sequentially in the terminal (replacing placeholders with your actual credentials) to perform a test run. See if a folder named **`Instagram Stories`** has been created in your Drive:  
    ```sh
    docker run --rm \
      -e INSTA_USERNAME="your_username" \

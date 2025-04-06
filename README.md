@@ -71,7 +71,7 @@ This keeps files updated easily.
 1. Open the cloud storage service where you want to save the downloaded Instagram stories (**Google Drive or OneDrive**).
 2. **Ensure that there is no existing folder named **`Instagram Stories`** in the root directory** of your Drive.
 3. **Edit the subscriptions file before uploading it to Drive**:
-   - Open `repo-folder/Upload to Drive/subscriptions.txt`.
+   - Open `repo-folder/Upload to Drive/Instagram Stories/Persistent Data/subscriptions.txt`.
    - Add the usernames of the Instagram accounts you want to download stories from.
    - The format should be:
      ```
